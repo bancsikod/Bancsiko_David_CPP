@@ -17,7 +17,7 @@ using namespace std;
 class Point{
     int x,y;
 public:
-    explicit Point(int x=0, int y=0);
+    Point(int x=0, int y=0);
     int getX() const;
     int getY() const;
     void print() const;
