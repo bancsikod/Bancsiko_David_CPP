@@ -23,12 +23,6 @@ bool List::exists(int d) const {
         }
     }
     return false;
-//    while (first != nullptr) {
-//        if (first->value == d) {
-//            return true;
-//        }
-//        first = first->next; - ez hibas sor
-//    }
 }
 
 int List::size() const {
@@ -49,32 +43,55 @@ void List::insertFirst(int d) {
 
 int List::removeFirst() {
     if (empty()) {
-        return -1;
-//        throw runtime_exception("hiba");
+        throw runtime_error("hiba: ures list");
     }
     Node* temp = first;
     first = temp->next;
     nodeCounter--;
-    return 1;
+    return temp->value;
 }
 
 void List::remove(int d, DeleteFlag df) {
-    for(Node* p = first; p; p = p->next) {
-        if (df == DeleteFlag::EQUAL && d == p->value) {
-
-        }
+    if (df != DeleteFlag::EQUAL && df != DeleteFlag::GREATER && df != DeleteFlag::LESS) {
+        return;
     }
-//    if (df == DeleteFlag::EQUAL) {
-//        Node* i = first;
-//        Node* j = nullptr;
-//        while (i != nullptr) {
-//            if (d == i->value) {
-//
-//            }
-//            j = i;
-//            i = i->next;
-//        }
-//    }
+
+    if ((df == DeleteFlag::LESS && first->value < d) || (df == DeleteFlag::EQUAL && first->value == d) || (df == DeleteFlag::GREATER && first->value > d)) {
+        first = first->next;
+        nodeCounter--;
+        return;
+    }
+
+    Node *temp1 = first, *temp2 = nullptr;
+
+    switch (df) {
+        case DeleteFlag::LESS:
+            while (temp1 && temp1->value >= d) {
+                temp2 = temp1;
+                temp1 = temp1->next;
+            }
+            break;
+        case DeleteFlag::GREATER:
+            while (temp1 && temp1->value <= d) {
+                temp2 = temp1;
+                temp1 = temp1->next;
+            }
+            break;
+        case DeleteFlag::EQUAL:
+            while (temp1 && temp1->value != d) {
+                temp2 = temp1;
+                temp1 = temp1->next;
+            }
+            break;
+    }
+
+    if (temp2 && temp1) {
+        temp2->next = temp1->next;
+        nodeCounter--;
+    }
+
+    delete temp1;
+    delete temp2;
 }
 
 void List::print() const {

@@ -8,6 +8,7 @@
 #ifndef LIST_H
 #define LIST_H
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ to remove. The enum values are accessed with List::DeleteFlag::LESS,
     enum class DeleteFlag {
         LESS, EQUAL, GREATER
     };
-    void remove(int d, DeleteFlag df);
+    void remove(int d, DeleteFlag df = DeleteFlag::EQUAL);
 /* prints the contents of this list */
     void print() const;
 /* forbid copying of lists */
