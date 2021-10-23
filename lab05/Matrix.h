@@ -5,15 +5,17 @@
 #ifndef LAB05_MATRIX_H
 #define LAB05_MATRIX_H
 
-
 #include <iostream>
 #include <stdexcept>
+#include <ctime>
+#include <cstdlib>
+
 using namespace std;
 class Matrix {
 public:
-//Methods
-// Default constructor
-    Matrix( int mRows = 10, int mCols =10);
+    //Methods
+    // Default constructor
+    Matrix( int mRows = 10, int mCols = 10);
     // Copy constructor
     Matrix(const Matrix& what);
     // Move constructor
@@ -29,7 +31,7 @@ public:
     void printMatrix(ostream& os = cout) const;
 
     //checks whether this matrix is a square one
-    bool isSquare() const;
+    bool isSquare() const { return this->mRows == this->mCols;};
     int getRows() const { return this->mRows;}
     int getCols() const { return this->mCols;}
 
@@ -46,9 +48,9 @@ public:
     friend ostream & operator<<(ostream& os, const Matrix& mat);
 
     // index operator
-    double* operator[] (int index);
+    double* operator[] (int index) { return mElements[index];};
     // index operator that works on constant matrices!
-    double* operator[] (int index) const;
+    double* operator[] (int index) const { return mElements[index];};
 
     // Copy assignment
     // operation is permitted between matrices having the same dimensions
