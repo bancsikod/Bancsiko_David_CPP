@@ -4,9 +4,9 @@
 
 #include "PointSet.h"
 
-PointSet::PointSet( int n) : n{n}, points{n} {
+PointSet::PointSet( int n) : n{n} {
 //    this->n = n;
-//    points.reserve(n);
+    points.reserve(n);
     srand(time(0));
     for (int i = 0; i < n; ++i) {
         points.emplace_back(Point(rand() % M, rand() % M));
@@ -29,7 +29,7 @@ void PointSet::computeDistances() {
 //    cout << *it;
 //}
 
-//minelement 2 parameter hol kezoddik, hol vegzodik, * mert pointert terit vissza
+//minelement 2 parameter hol kezdodik, hol vegzodik, * mert pointert terit vissza
 double PointSet::minDistance() const {
     return *min_element(distances.begin(),distances.end());
 }

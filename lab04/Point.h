@@ -14,11 +14,16 @@ using namespace std;
 class Point{
 private:
     int x, y;
+    static int counter;
 public:
     Point( int x=0, int y=0);
+    Point(const Point&);
+    ~Point();
     int getX() const;
     int getY() const;
     double distanceTo(const Point& point)const;
+
+    static int getCounter();
 };
 
 #endif //LAB04_POINT_H

@@ -4,9 +4,20 @@
 
 #include "Point.h"
 
+int Point::counter{0};
+
 Point::Point(int x, int y) {
     this->x = x;
     this->y = y;
+    counter++;
+}
+
+Point::Point(const Point& cpy) : x(cpy.x), y(cpy.y){
+    counter++;
+}
+
+Point::~Point() {
+    counter--;
 }
 
 int Point::getY() const {
@@ -23,3 +34,8 @@ double Point::distanceTo(const Point& point)const {
     double dy = this->y - point.y;
     return sqrt(dx*dx + dy*dy);
 }
+
+int Point::getCounter() {
+    return counter;
+}
+

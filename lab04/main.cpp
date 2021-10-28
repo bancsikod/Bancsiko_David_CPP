@@ -4,6 +4,11 @@
 
 int main() {
 
+    PointSet pset1(10);
+    cout<<"#points: " <<Point::getCounter()<<endl;
+    PointSet pset2(20);
+    cout<<"#points: " <<Point::getCounter()<<endl;
+
     int n = 2;
     cout<<"Pontok\tMinTav\t MaxTav\t #tavolsagok\t#kulonbozotavolsagok"<<endl;
     cout<< fixed;
@@ -16,5 +21,8 @@ int main() {
         cout<<setw(16) << pSet.numDistinctDistances()<<endl;
         n = n << 1;
     }
+
+
+
     return 0;
 }
