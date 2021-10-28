@@ -21,6 +21,16 @@ Matrix::Matrix(const Matrix &what) : mRows(what.mRows), mCols(what.mCols) {
     }
 }
 
+Matrix::Matrix(Matrix &&what) {
+    mElements = what.mElements;
+    mRows = what.mRows;
+    mCols = what.mCols;
+
+    what.mElements = nullptr;
+    what.mRows = 0;
+    what.mCols = 0;
+}
+
 Matrix::~Matrix() {
     for (int i = 0; i < mRows; ++i) {
         delete[] mElements[i];
@@ -105,16 +115,37 @@ Matrix &Matrix::operator=(const Matrix &mat) {
         throw out_of_range("Fault(=): operation is not permitted");
     }
 
-    if (this == &mat) {
-        return *this;
-    }
-
-    for (int i = 0; i < mRows; ++i) {
-        for (int j = 0; j < mCols; ++j) {
-            mElements[i][j] = mat.mElements[i][j];
+    if (this != &mat) {
+        //free the existing resources, here not needed, but is good practice
+        for (int i = 0; i < mRows; ++i) {
+            for (int j = 0; j < mCols; ++j) {
+                mElements[i][j] = mat.mElements[i][j];
+            }
         }
     }
 
+    return *this;
+}
+
+Matrix &Matrix::operator=(Matrix &&mat) {
+    if (mRows != mat.mRows || mCols != mat.mCols) {
+        throw out_of_range("Fault(=): operation is not permitted");
+    }
+
+    if (this != &mat) {
+        for (int i = 0; i < mRows; ++i) {
+            delete[] mElements[i];
+        }
+        delete[] mElements; //free the existing resource.
+
+        mElements = mat.mElements;
+        mRows = mat.mRows;
+        mCols = mat.mCols;
+
+        mat.mElements = nullptr;
+        mat.mRows = 0;
+        mat.mCols = 0;
+    }
     return *this;
 }
 

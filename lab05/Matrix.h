@@ -57,7 +57,7 @@ public:
     // otherwise throws an exception (out_of_range)
     Matrix & operator=(const Matrix& mat);
     // Move assignment
-    Matrix & operator=(Matrix&& mat);
+    Matrix & operator=(Matrix&& mat) ;
 
 
 private:
