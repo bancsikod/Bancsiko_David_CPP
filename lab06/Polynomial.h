@@ -6,7 +6,11 @@
 #define LAB06_POLYNOMIAL_H
 
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <cmath>
 using namespace std;
+
 
 class Polynomial {
     // Polinom együtthatói
@@ -29,6 +33,7 @@ public:
     friend Polynomial operator +(const Polynomial &a, const Polynomial &b);
     friend Polynomial operator -(const Polynomial &a, const Polynomial &b);
     friend Polynomial operator *(const Polynomial &a, const Polynomial &b);
+    friend istream & operator >>(istream& in, const Polynomial& what);
     friend ostream & operator <<(ostream& out, const Polynomial& what);
     /* copy assignment - mély másolat letiltása értékadásra nézve */
     Polynomial& operator=(const Polynomial&) = delete;
