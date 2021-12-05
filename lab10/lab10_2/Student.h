@@ -25,7 +25,7 @@ public:
     const map<string, double> &getGrades() const;
     double getAverage() const;
     void addGrade(const string&, double);
-    double getGrade(string&) const;
+    double getGrade(const string&) const;
     void computeAverage();
 
     friend ostream& operator<<(ostream&, Student&);

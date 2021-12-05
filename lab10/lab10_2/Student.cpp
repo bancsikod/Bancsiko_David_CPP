@@ -30,16 +30,13 @@ Student::Student(int id, const string &firstName, const string &lastName)
 , lastName(lastName)
 , average(0){
     grades.clear();
-
 }
 
 void Student::addGrade(const string &examName, double grade) {
     grades.emplace(examName,grade);
-    //grades.insert(pair<string,double>(examName,grade));
-    //grades[examName] = grade;
 }
 
-double Student::getGrade(string &examName) const {
+double Student::getGrade(const string &examName) const {
     auto it = grades.find(examName);
     return it->second;
 }

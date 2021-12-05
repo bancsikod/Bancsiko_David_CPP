@@ -14,9 +14,9 @@ class GraduationExam {
     int year;
     map<int, Student> students;
 private:
-    void enrollment(string&);
+    void enrollment(const string&);
     int numStudents() const;
-    void readGradesOfSubject(string&, string&);
+    void readGradesOfSubject(const string&, const string&);
     void computeFinalGrades();
     const map<string, double> &getGrades(int) const;
     int numPassed() const;
