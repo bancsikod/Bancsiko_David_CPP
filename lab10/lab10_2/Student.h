@@ -28,7 +28,7 @@ public:
     double getGrade(const string&) const;
     void computeAverage();
 
-    friend ostream& operator<<(ostream&, Student&);
+    friend ostream& operator<<(ostream&, const Student&);
 };
 
 

@@ -10,16 +10,19 @@
 
 using namespace std;
 
+class GraduationInfo;
 class GraduationExam {
     int year;
     map<int, Student> students;
-private:
+    friend class GraduationInfo;
+public:
     void enrollment(const string&);
     int numStudents() const;
     void readGradesOfSubject(const string&, const string&);
     void computeFinalGrades();
     const map<string, double> &getGrades(int) const;
     int numPassed() const;
+    void print();
 };
 
 

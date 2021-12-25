@@ -53,7 +53,7 @@ void Student::computeAverage() {
     average = sum / grades.size();
 }
 
-ostream &operator<<(ostream &os, Student &student) {
+ostream &operator<<(ostream &os, const Student &student) {
     os << student.ID << " " << student.firstName << " " << student.lastName << ":\n";
     for (auto & grade : student.grades) {
         os << "\t" << grade.first << " " << grade.second << endl;
